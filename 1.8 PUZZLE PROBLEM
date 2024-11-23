@@ -1,0 +1,56 @@
+import heapq
+
+class Puzzle:
+    def __init__(self, board):
+        self.board = board
+        self.size = 3
+        self.goal = [1, 2, 3, 4, 5, 6, 7, 8, 0]
+
+    def is_solved(self):
+        return self.board == self.goal
+
+    def get_moves(self):
+        empty_pos = self.board.index(0)
+        row, col = divmod(empty_pos, self.size)
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        moves = []
+        for dr, dc in directions:
+            new_row, new_col = row + dr, col + dc
+            if 0 <= new_row < self.size and 0 <= new_col < self.size:
+                new_pos = new_row * self.size + new_col
+                new_board = self.board[:]
+                new_board[empty_pos], new_board[new_pos] = new_board[new_pos], new_board[empty_pos]
+                moves.append(new_board)
+        return moves
+
+    def heuristic(self):
+        return sum(abs(i // self.size - self.goal.index(v) // self.size) + abs(i % self.size - self.goal.index(v) % self.size) for i, v in enumerate(self.board) if v != 0)
+
+    def solve(self):
+        pq, visited = [(self.heuristic(), 0, self.board)], set()
+        heapq.heapify(pq)
+        while pq:
+            _, g, current = heapq.heappop(pq)
+            if current == self.goal:
+                return current
+            for move in self.get_moves():
+                if tuple(move) not in visited:
+                    heapq.heappush(pq, (g + 1 + self.heuristic(), g + 1, move))
+                    visited.add(tuple(move))
+        return None
+
+def print_board(board):
+    for i in range(0, len(board), 3):
+        print(board[i:i+3])
+
+if __name__ == "__main__":
+    puzzle = Puzzle([1, 2, 3, 4, 5, 6, 7, 8, 0])
+    print("Initial Board:")
+    print_board(puzzle.board)
+    
+    solution = puzzle.solve()
+    if solution:
+        print("\nSolution:")
+        print_board(solution)
+    else:
+        print("\nNo solution found!")

@@ -1,0 +1,6 @@
+database(sameer,'29-03-2004').
+database(sathwik,'20-11-2004').
+database(vishnu,'14-03'2007').
+database(Vamsi,'15-06-2004').
+
+find_details(Student):- database(Student,Dob),write('Date-of-Birth:'),write(Dob),nl.

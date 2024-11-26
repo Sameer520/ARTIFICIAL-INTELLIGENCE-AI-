@@ -1,0 +1,9 @@
+first_name(sathwik,'Sathwik').
+first_name(chimmu,'Sai Santhosh').
+first_name(vishnu,'Vishnu Vardhan').
+first_name(sameer,'Sameer Ahammed').
+last_name(sathwik,'Tallapaka').
+last_name(chimmu,'Taluru').
+last_name(vishnu,'Akepati').
+last_name(sameer,'Syed').
+find_full_name(N,FN):- first_name(N,FN1),last_name(N,LN1),atom_concat(FN1,' ',Tn),atom_concat(Tn,LN1,FN).

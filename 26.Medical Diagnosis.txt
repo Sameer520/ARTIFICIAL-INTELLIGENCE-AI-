@@ -1,0 +1,23 @@
+symptom(fever, flu).
+symptom(cough, flu).
+symptom(sore_throat, flu).
+symptom(runny_nose, cold).
+symptom(sneezing, cold).
+symptom(headache, migraine).
+symptom(nausea, migraine).
+symptom(chest_pain, heart_disease).
+symptom(shortness_of_breath, heart_disease).
+symptom(fatigue, anemia).
+
+diagnose(Disease):- findall(Disease,(symptom(Symptom,Disease),ask(Symptom)),List),
+                    
+                    sort(List,Dlist),write(Dlist),nl,fail.
+diagnose(_):- write("Thank You").
+ask(Symptom):-  format("Do u have ~w(yes,no)",[Symptom]),
+                read(R),
+                R==yes.
+start_diagnosis:-
+                 write("Welcome to Disease Diagnosis System"),nl,
+                 write("Enter the Symptoms u have"),nl,
+                 diagnose(_). 
+  

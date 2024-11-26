@@ -1,0 +1,15 @@
+initial_state(state(at_floor,no_banana,at_corner,hanging)).
+goal_state(state(on_box,has_banana,at_center,grabbed)).
+
+move(state(at_floor,no_banana,at_corner,hanging),monkey_pushes_box_to_center,state(at_floor,no_banana,at_center,hanging)).
+move(state(at_floor,no_banana,at_center,hanging),monkey_climbed_box,state(on_box,no_banana,at_center,hanging)).
+move(state(on_box,no_banana,at_center,hanging),monkey_grabbed_banana,state(on_box,has_banana,at_center,grabbed)).
+
+path(State,[],_):- goal_state(State).
+
+path(I,[M|Ms],V):- move(I,M,N),!,
+                    \+ member(N,V),
+                    path(N,Ms,[N|V]).
+solve(Moves):-
+              initial_state(I),
+              path(I,Moves,[I]).

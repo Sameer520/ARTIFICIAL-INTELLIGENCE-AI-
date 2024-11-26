@@ -1,0 +1,12 @@
+database(1,mercury).
+database(2,venus).
+database(3,earth).
+database(4,mars).
+database(5,jupiter).
+database(6,saturn).
+database(7,uranus).
+database(8,neptune).
+
+our_planet(Planet):-database(3,Planet).
+display_planets(Planet,Name):-database(Planet,Name).
+planet_count(C):-findall((N,P),database(P,N),Pl),length(Pl,C).

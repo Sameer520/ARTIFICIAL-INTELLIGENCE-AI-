@@ -1,0 +1,6 @@
+hostile(country_a).
+american(robert).
+has_weapons(country_a,missiles).
+sell(robert,missiles,country_a).
+crime(X):- american(X),sell(X,Y,Z),hostile(Z),has_weapons(Z,Y).
+is_criminal(X):- crime(X).

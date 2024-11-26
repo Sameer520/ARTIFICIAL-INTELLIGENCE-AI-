@@ -1,0 +1,10 @@
+color(apple,'red').
+color(apple,green).
+color(custard,'green').
+color(pomegranate,'pink').
+color(guava,'green').
+color(orange,'orange').
+color(banana,'yellow'):-!.
+
+find_fruit_color(Fruit):- color(Fruit,Color),write(Color),nl,fail.
+find_colored_fruit(Color):-color(Fruit,Color),write(Fruit),nl,fail.

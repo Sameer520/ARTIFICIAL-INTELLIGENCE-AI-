@@ -1,0 +1,15 @@
+parent(subbalakshumma,narasimha).
+parent(narasimhulu,narasimha).
+parent(narasimha,sathwik).
+parent(chandravathi,sathwik).
+parent(narasimha,bhanu).
+parent(chandravathi,bhanu).
+female(subbalakshumma).
+female(chandravathi).
+male(narasimha).
+male(sathwik).
+male(bhanu).
+
+mother(Child,Mother):- parent(Mother,Child),female(Mother).
+father(Child,Father):-parent(Father,Child),male(Father).
+sibling(Child,Sibling):-parent(P,Child),parent(P,Sibling),Child \= Sibling,!.

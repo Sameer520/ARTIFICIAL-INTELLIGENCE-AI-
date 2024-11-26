@@ -1,0 +1,7 @@
+bird(ostrich).
+bird(hen).
+bird(peacock).
+bird(pigeon).
+fly(peacock).
+fly(pigeon).
+can_fly(B):- bird(B),(fly(B)->write(B),write(" Can Fly"),nl;write(B),write(" Can't Fly")).

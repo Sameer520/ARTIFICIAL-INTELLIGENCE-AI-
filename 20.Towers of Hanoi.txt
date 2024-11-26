@@ -1,0 +1,5 @@
+towers(1,S,D,_):- write("Disk 1 is Moved from "),write(S),write(" to "),write(D),nl.
+towers(N,S,D,A):-N>0,
+                 M is N-1,
+                 towers(M,S,A,D),
+                 write("Disk "),write(N),write(" is moved from "),write(S),write(" to "),write(D),nl,towers(M,D,A,S).

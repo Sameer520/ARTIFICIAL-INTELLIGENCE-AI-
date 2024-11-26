@@ -1,0 +1,7 @@
+diet(dehydration,'Plenty of Water').
+diet(diabetis,'No Sugar foods').
+diet(wound,'No Pus Forming Foods').
+diet(ulcer,'No Spicy Foods').
+diet(tuberculosis,'No Smoking').
+
+find_diet(D,Diet):- (diet(D,_)->diet(D,Diet);write('No Disease Data found')).

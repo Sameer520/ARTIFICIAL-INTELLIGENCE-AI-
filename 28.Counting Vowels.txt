@@ -1,0 +1,16 @@
+vowel('a').
+vowel('e').
+vowel('i').
+vowel('o').
+vowel('u').
+vowel('A').
+vowel('E').
+vowel('I').
+vowel('O').
+vowel('U').
+
+find_count([],0).
+find_count([H|T],C):-  vowel(H),!,find_count(T,Rc),C is Rc+1.
+find_count([H|T],C):-  \+ vowel(H),find_count(T,C).
+
+vowel_count(String,C):- string_chars(String,Char_list),find_count(Char_list,C).

@@ -1,0 +1,19 @@
+edge(a, b).
+edge(a, c).
+edge(b, d).
+edge(c, e).
+edge(d, f).
+edge(e, f).
+
+connected(X, Y) :- edge(X, Y).
+connected(X, Y) :- edge(Y, X).
+
+bfs(Start,Goal,Path):- bfs_helper([[start]],Goal,Path).
+
+bfs_helper([[Goal|Remaining],_],Goal,Path):- reverse([Goal|Remaining],path).
+bfs_helper([Current|Paths],Goal,Path):- extend_paths(Current,NewPaths),
+                                        append(Paths,NewPaths,Updated),
+                                        bfs_helper(Updated,Goal,Path).
+
+extend([Node|Visited],NewPaths):-
+findall([New,Node|Visited],(connected(Node,NewNode),\+ member(NewNode,[Node|Visited])),NewPaths).

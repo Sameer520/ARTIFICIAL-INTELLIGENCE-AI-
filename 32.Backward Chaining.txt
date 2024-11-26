@@ -1,0 +1,6 @@
+has_symptom(john,cough).
+has_symptom(john,fever).
+has_symptom(john,sore_throat).
+
+has_cold(X):-has_symptom(X,cough),has_symptom(X,fever).
+has_flu(X):-has_cold(X),has_symptom(X,sore_throat).
